@@ -34,12 +34,12 @@ var getRadiansFullCicle=function(){
 
 if(ResizeObserver) {
   var resizeObserver = new ResizeObserver(function(entries) {
-    
+
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
   });
 
-  resizeObserver.observe(canvas);
+  resizeObserver.observe(document.body);
 }
 
 var clearCanvas=function(){
