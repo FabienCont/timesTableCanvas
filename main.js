@@ -51,16 +51,16 @@ var drawBackground=function(){
   ctx.rect(0, 0, getCanvasWidth(), getCanvasHeight());
   ctx.fill();
 };
-var drawBackgroundCircle=function(){
-  ctx.fillStyle="#FFFFFF";
+var drawBackgroundCircle=function(color,x,y,radius,radiansStart,radiansEnd){
+  ctx.fillStyle=color;
   ctx.beginPath();
-  ctx.arc(getXCenter(), getYCenter(), getRadius()+5, getRadiansStartCicle(),getRadiansEndCicle());
+  ctx.arc(x,y,radius,radiansStart,radiansEnd);
   ctx.fill();
 };
 
-var drawCircle=function(){
+var drawCircle=function(x,y,radius,radiansStart,radiansEnd){
   ctx.beginPath();
-  ctx.arc(getXCenter(), getYCenter(), getRadius(), getRadiansStartCicle(),getRadiansEndCicle());
+  ctx.arc(x,y,radius,radiansStart,radiansEnd);
   ctx.stroke();
 }
 
@@ -70,17 +70,14 @@ var findCoordPontOnCircle =function(pointAngleInRadians){
   return {x:x,y:y};
 }
 
-var nbToRgbStyle=function(C){
-  var offset =100;
-  var maxSize=256-100;
-  // var B = (C % maxSize)+offset;
-  // var G = (((C-B)/maxSize) % maxSize)+offset;
-  // var R = (((C-B)/maxSize**2) - G/maxSize)+offset;
-  var R =((maxSize+C+ offset*1)%maxSize);
-  var G =((maxSize+C+ offset*2)%maxSize);
-  var B =((maxSize+C+ offset*3)%maxSize);
-  var rgbStyle="rgb("+R+","+G+","+B+")";
-  return rgbStyle;
+var nbToHslStyle=function(C){
+  var maxSize=350;
+  var H =(C%maxSize);
+  var S =100;
+  var L =40;
+
+  var hslStyle="hsl("+H+","+S+"%,"+L+"%)";
+  return hslStyle;
 }
 
 
@@ -97,7 +94,7 @@ var drawLines=function(numberOfPointOnCircle,times){
 
   for(var i=0;i<numberOfPointOnCircle;i++){
     var pointAngleInRadians1= radianTable[i];
-    var pointAngleInRadians2=radianTable[(i*times)%numberOfPointOnCircle];
+    var pointAngleInRadians2=radianTable[Math.floor((i*times))%numberOfPointOnCircle];
     var coord1=findCoordPontOnCircle(pointAngleInRadians1);
     var coord2=findCoordPontOnCircle(pointAngleInRadians2);
     ctx.beginPath();
@@ -107,22 +104,28 @@ var drawLines=function(numberOfPointOnCircle,times){
   }
 
 };
-var numberOfPointOnCircle=400;
+
+
+var numberOfPointOnCircle=250;
 var timesTable=1;
 var color=0;
+var colorToAdd=1;
+var speed=30;
+var speed = 30;
 
 var draw=function(timesTable,color){
   setTimeout(function(){
-    timesTable++;
-    color+=20;
-    clearCanvas();
-    drawBackground();
-    drawBackgroundCircle();
-    ctx.strokeStyle=nbToRgbStyle(color);
-    drawCircle();
-    drawLines(numberOfPointOnCircle,timesTable);
-    draw(timesTable,color);
-  },100);
+      timesTable+=0.01;
+      color=color+colorToAdd;
+      timesTable=Math.round((timesTable + Number.EPSILON) * 100) / 100;
+      clearCanvas();
+      drawBackground();
+      ctx.strokeStyle=nbToHslStyle(color);
+      drawBackgroundCircle("#FFFFFF",getXCenter(), getYCenter(), getRadius()+5, getRadiansStartCicle(),getRadiansEndCicle());
+      drawCircle(getXCenter(), getYCenter(), getRadius(), getRadiansStartCicle(),getRadiansEndCicle());
+      drawLines(numberOfPointOnCircle,timesTable);
+      requestAnimationFrame(draw.call(this,timesTable,color));
+  },1000/speed);
 }
 
 
