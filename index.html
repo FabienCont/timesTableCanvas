@@ -9,45 +9,79 @@
 </head>
 <body>
  <canvas id="canvas"></canvas>
- <table class="grid-container">
-   <tbody>
-       <tr class="data-container">
-           <td>Circle points</td>
-           <td>
-              <input class="data-input" data-tw-bind="numberOfPointOnCircle" type="number">
-              <span data-tw-bind="numberOfPointOnCircle"></span>
-           </td>
-       </tr>
-       <tr class="data-container">
-           <td>times Table</td>
-           <td>
-               <input class="data-input" data-tw-bind="timesTable" type="number">
-              <span data-tw-bind="timesTable"></span>
-           </td>
-       </tr>
-       <tr class="data-container">
-           <td>color</td>
-           <td>
-               <input class="data-input" data-tw-bind="color" type="number">
-              <span data-tw-bind="color"></span>
-           </td>
-       </tr>
-       <tr class="data-container">
-           <td>color step</td>
-           <td>
-               <input class="data-input" data-tw-bind="colorToAdd" type="number">
-              <span data-tw-bind="colorToAdd"></span>
-           </td>
-       </tr>
-       <tr class="data-container">
-           <td>speed</td>
-           <td>
-               <input class="data-input" data-tw-bind="speed" type="number">
-              <span data-tw-bind="speed"></span>
-           </td>
-       </tr>
-   </tbody>
- </table>
+ <div class="grid-container">
+   <div class="open-container"></div>
+   <div class="panel-container">
+     <div class="close-container"></div>
+     <table class="table-container">
+       <tbody>
+           <tr class="data-container">
+               <td>Circle points</td>
+               <td>
+                  <input class="data-input" data-tw-bind="numberOfPointOnCircle" type="number">
+                  <span data-tw-bind="numberOfPointOnCircle"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>Line Width</td>
+               <td>
+                  <input class="data-input" data-tw-bind="lineWidth" type="number">
+                  <span data-tw-bind="lineWidth"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>times Table</td>
+               <td>
+                   <input class="data-input" data-tw-bind="timesTable" type="number">
+                  <span data-tw-bind="timesTable"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>color</td>
+               <td>
+                   <input class="data-input" data-tw-bind="hue" type="number">
+                  <span data-tw-bind="color"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>color step</td>
+               <td>
+                   <input class="data-input" data-tw-bind="hueToAdd" type="number">
+                  <span data-tw-bind="colorToAdd"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>saturation</td>
+               <td>
+                   <input min="0" max="100" class="data-input" data-tw-bind="saturation" type="number">
+                  <span data-tw-bind="saturation"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>light</td>
+               <td>
+                   <input min="0" max="100" class="data-input" data-tw-bind="light" type="number">
+                  <span data-tw-bind="light"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>speed</td>
+               <td>
+                   <input class="data-input" data-tw-bind="speed" type="number">
+                  <span data-tw-bind="speed"></span>
+               </td>
+           </tr>
+           <tr class="data-container">
+               <td>framerate</td>
+               <td>
+                   <input class="data-input" data-tw-bind="framerate" type="number">
+                  <span data-tw-bind="framerate"></span>
+               </td>
+           </tr>
+       </tbody>
+     </table>
+   </div>
+  </div>
 </body>
 <script src="./main.js" charset="utf-8"></script>
 </html>
