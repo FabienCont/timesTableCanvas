@@ -9,6 +9,45 @@
 </head>
 <body>
  <canvas id="canvas"></canvas>
+ <table class="grid-container">
+   <tbody>
+       <tr class="data-container">
+           <td>Circle points</td>
+           <td>
+              <input class="data-input" data-tw-bind="numberOfPointOnCircle" type="number">
+              <span data-tw-bind="numberOfPointOnCircle"></span>
+           </td>
+       </tr>
+       <tr class="data-container">
+           <td>times Table</td>
+           <td>
+               <input class="data-input" data-tw-bind="timesTable" type="number">
+              <span data-tw-bind="timesTable"></span>
+           </td>
+       </tr>
+       <tr class="data-container">
+           <td>color</td>
+           <td>
+               <input class="data-input" data-tw-bind="color" type="number">
+              <span data-tw-bind="color"></span>
+           </td>
+       </tr>
+       <tr class="data-container">
+           <td>color step</td>
+           <td>
+               <input class="data-input" data-tw-bind="colorToAdd" type="number">
+              <span data-tw-bind="colorToAdd"></span>
+           </td>
+       </tr>
+       <tr class="data-container">
+           <td>speed</td>
+           <td>
+               <input class="data-input" data-tw-bind="speed" type="number">
+              <span data-tw-bind="speed"></span>
+           </td>
+       </tr>
+   </tbody>
+ </table>
 </body>
 <script src="./main.js" charset="utf-8"></script>
 </html>

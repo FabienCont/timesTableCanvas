@@ -1,8 +1,8 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-canvas.width  = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width  = (screen & screen.width)?screen.width:window.innerWidth;
+canvas.height = (screen & screen.height)?screen.height:window.innerHeight;
 
 var getCanvasWidth=function(){
   return canvas.width;
@@ -35,8 +35,8 @@ var getRadiansFullCicle=function(){
 if(ResizeObserver) {
   var resizeObserver = new ResizeObserver(function(entries) {
 
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width  = (screen & screen.width)?screen.width:window.innerWidth;
+    canvas.height = (screen & screen.height)?screen.height:window.innerHeight;
   });
 
   resizeObserver.observe(document.body);
@@ -111,8 +111,6 @@ var timesTable=1;
 var color=0;
 var colorToAdd=1;
 var speed=30;
-var speed = 30;
-
 var draw=function(timesTable,color){
   setTimeout(function(){
       timesTable+=0.01;
@@ -124,7 +122,7 @@ var draw=function(timesTable,color){
       drawBackgroundCircle("#FFFFFF",getXCenter(), getYCenter(), getRadius()+5, getRadiansStartCicle(),getRadiansEndCicle());
       drawCircle(getXCenter(), getYCenter(), getRadius(), getRadiansStartCicle(),getRadiansEndCicle());
       drawLines(numberOfPointOnCircle,timesTable);
-      requestAnimationFrame(draw.call(this,timesTable,color));
+      requestAnimationFrame(draw.bind(this,timesTable,color));
   },1000/speed);
 }
 

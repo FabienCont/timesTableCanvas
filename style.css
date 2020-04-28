@@ -4,3 +4,22 @@ html,body{
   padding:0;
   background: black;
 }
+
+.grid-container{
+  display: none;
+  position:absolute;
+  top:0;
+  right: 0;
+  flex-direction: column;
+}
+
+.data-container{
+  color:white
+}
+
+.data-input{
+  width:50px;
+}
+.data-span{
+
+}
