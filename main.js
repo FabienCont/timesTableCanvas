@@ -1,14 +1,25 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+ctx.imageSmoothingEnabled = true;
 
-canvas.width = (screen & screen.width) ? screen.width : window.innerWidth;
-canvas.height = (screen & screen.height) ? screen.height : window.innerHeight;
+var ratio = window.devicePixelRatio || 1;
+var width = (screen & screen.width) ? screen.width : window.innerWidth;
+var height = (screen & screen.height) ? screen.height : window.innerHeight;
+
+canvas.setAttribute('height', ratio * height);
+canvas.setAttribute('width', ratio * width);
+
+canvas.style.height = height + 'px';
+canvas.style.width = width + 'px';
+
+ctx.scale(ratio, ratio);
+
 
 var getCanvasWidth = function() {
-  return canvas.width;
+  return width;
 }
 var getCanvasHeight = function() {
-  return canvas.height;
+  return height;
 }
 
 var getXCenter = function() {
@@ -36,8 +47,17 @@ try{
   if (ResizeObserver) {
     var resizeObserver = new ResizeObserver(function(entries) {
 
-      canvas.width = (screen & screen.width) ? screen.width : window.innerWidth;
-      canvas.height = (screen & screen.height) ? screen.height : window.innerHeight;
+      ratio = window.devicePixelRatio || 1;
+      width = (screen & screen.width) ? screen.width : window.innerWidth;
+      height = (screen & screen.height) ? screen.height : window.innerHeight;
+
+      canvas.setAttribute('height', ratio * height);
+      canvas.setAttribute('width', ratio * width);
+
+      canvas.style.height = height + 'px';
+      canvas.style.width = width + 'px';
+
+      ctx.scale(ratio, ratio);
     });
 
     resizeObserver.observe(document.body);
@@ -143,6 +163,7 @@ refs.light=40;
 refs.speed=1;
 refs.framerate=60;
 refs.lineWidth=1.5;
+refs.timesTableStep=0.4;
 
 var inputsElement=document.querySelectorAll('[data-tw-bind]');
 for (var i = 0; i < inputsElement.length; i++) {
@@ -154,7 +175,7 @@ for (var i = 0; i < inputsElement.length; i++) {
 }
 
 var draw = function(deltaTime) {
-    refs.timesTable += 0.4*(deltaTime/1000);
+    refs.timesTable += refs.timesTableStep*(deltaTime/1000);
     refs.hue = refs.hue + refs.hueToAdd*(deltaTime/1000);
     clearCanvas();
     drawBackground();
