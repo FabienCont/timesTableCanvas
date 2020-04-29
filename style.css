@@ -12,7 +12,9 @@ html,body{
   right: 0;
   flex-direction: column;
 }
-
+.hide{
+  display: none;
+}
 .open-container{
   display: block;
   height: 1rem;
